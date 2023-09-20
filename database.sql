@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS url_checks CASCADE;
 DROP TABLE IF EXISTS urls CASCADE;
+
 CREATE TABLE urls
 (
     id         SERIAL,

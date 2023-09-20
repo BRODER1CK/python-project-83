@@ -108,6 +108,7 @@ def check_url(id):
 def server_error(error):
     return render_template('error.html'), 404
 
+
 @app.errorhandler(500)
 def server_error(error):
     return render_template('error.html'), 500

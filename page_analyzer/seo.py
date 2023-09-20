@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 
+
 def get_seo(page):
     contents = BeautifulSoup(page, 'html.parser')
     title = contents.find('title').text if contents.find('title') else ''
