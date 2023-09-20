@@ -105,10 +105,16 @@ def check_url(id):
 
 
 @app.errorhandler(404)
-def server_error(error):
-    return render_template('error.html'), 404
+def page_not_found(error):
+    return render_template(
+        'error.html',
+        title='Страница не найдена'
+    ), 404
 
 
 @app.errorhandler(500)
-def server_error(error):
-    return render_template('error.html'), 500
+def internal_server_error(error):
+    return render_template(
+        'error.html',
+        title='Внутренняя ошибка сервера'
+    ), 500

@@ -1,12 +1,13 @@
-{% extends 'index.html' %}
+{% extends "index.html" %}
 
 {% block content %}
-  <h1>Упс, что-то пошло не так</h1>
-  <div class="row row-cols-1 row-cols-lg-2 align-items-lg-center">
-        <div class="col">
-            <h2 class="h2 mb-4">
-                Произошла ошибка
-            </h2>
-        </div>
+  <main class="flex-grow-1">
+    <div class="container-lg mt-3">
+      <h1>Упс, что-то пошло не так!</h1>
+
+  <p>{{ title }}</p>
+  <p><a href="{{ url_for('index') }}">Вернуться на главную</a></p>
+
     </div>
+  </main>
 {% endblock %}
