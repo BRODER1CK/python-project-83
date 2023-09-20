@@ -7,21 +7,25 @@ Page Analyzer — полноценное приложение, основанн�
 
 # Требования к установке
 
-`python ^3.8`
-
-`gunicorn ^20.1.0`
-
-`flask ^2.2.2`
-
-`python-dotenv ^0.21.0`
-
-`psycopg2-binary ^2.9.5`
-
-`validators ^0.20.0`
-
-`requests ^2.28.1`
-
-`beautifulsoup4 ^4.11.1`
+ `python = "^3.9" `
+ 
+ `flask = "^2.2.2" `
+ 
+ `gunicorn = "^20.1.0" `
+ 
+ `python-dotenv = "^0.21.1" `
+ 
+ `jinja2 = "^3.1.2" `
+ 
+ `psycopg = "^3.1.8" `
+ 
+ `psycopg2-binary = "^2.9.5" `
+ 
+ `validators = "^0.20.0" `
+ 
+ `requests = "^2.28.2" `
+ 
+ `beautifulsoup4 = "^4.11.2" `
 
 # Инструкция по установке
 
