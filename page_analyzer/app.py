@@ -93,11 +93,13 @@ def check_url(id):
         flash('Произошла ошибка при проверке', 'danger')
         return redirect(url_for('show_url', id=id))
 
-    page = res.text
+    page = get_seo(res.text)
     page_data = {
         'url_id': id,
         'status_code': res.status_code,
-        **get_seo(page)
+        'title': page[0],
+        'h1': page[1],
+        'description': page[2]
     }
     db.add_check(page_data)
     flash('Страница успешно проверена', 'success')

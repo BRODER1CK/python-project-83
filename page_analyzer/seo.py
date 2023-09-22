@@ -10,8 +10,4 @@ def get_seo(page):
         description = description['content']
     else:
         description = ''
-    return {
-        'title': title[:255],
-        'h1': h1[:255],
-        'description': description[:255],
-    }
+    return title, h1, description
