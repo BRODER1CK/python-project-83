@@ -32,6 +32,7 @@ def get_urls_with_checks():
             urls = curs.fetchall()
     return urls
 
+
 def get_url_by_id(id):
     with get_db() as conn:
         with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
