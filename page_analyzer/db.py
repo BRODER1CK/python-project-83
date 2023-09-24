@@ -13,13 +13,24 @@ def get_db():
     return psycopg2.connect(DATABASE_URL)
 
 
-def get_urls():
+def get_urls_with_checks():
     with get_db() as conn:
         with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
-            curs.execute('SELECT * FROM urls ORDER BY id DESC;')
+            curs.execute(
+        'SELECT DISTINCT ON (urls.id)\
+                        urls.id AS id,\
+                        urls.name AS name,\
+                        url_checks.created_at AS last_check,\
+                        url_checks.status_code AS status_code\
+                    FROM urls\
+                    LEFT JOIN url_checks ON urls.id = url_checks.url_id\
+                    AND url_checks.id = (SELECT MAX(id)\
+                                        FROM url_checks\
+                                        WHERE url_id = urls.id)\
+                    ORDER BY urls.id DESC;'
+    )
             urls = curs.fetchall()
     return urls
-
 
 def get_url_by_id(id):
     with get_db() as conn:
@@ -47,16 +58,6 @@ def add_url(url):
             id = curs.fetchone().id
             conn.commit()
     return id
-
-
-def get_checks():
-    with get_db() as conn:
-        with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
-            curs.execute(
-                'SELECT DISTINCT ON (url_id) * FROM url_checks ORDER BY url_id DESC'
-            )
-            checks = curs.fetchall()
-    return checks
 
 
 def get_checks_for_url(id):

@@ -31,11 +31,9 @@ def index():
 @app.route('/urls')
 def urls():
     messages = get_flashed_messages(with_categories=True)
-    sites = db.get_urls()
-    checks = db.get_checks()
-    data = zip_longest(sites, checks)
+    urls = db.get_urls_with_checks()
 
-    return render_template('urls.html', sites=data, messages=messages)
+    return render_template('urls.html', urls=urls, messages=messages)
 
 
 @app.post('/urls')

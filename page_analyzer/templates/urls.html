@@ -11,20 +11,16 @@
         <th>Последняя проверка</th>
         <th>Код ответа</th>
       </tr>
-      {% for site, check in sites %}
+      {% if urls %}
+      {% for url in urls %}
       <tr>
-        <td>{{ site.id }}</td>
-        <td><a href="{{ url_for("show_url", id = site.id) }}">{{ site.name }}</a></td>
-        {% if check %}
-        <td>{{ check.created_at.strftime('%Y-%m-%d') }}</td>
-        <td>{{ check.status_code }}</td>
-        {% else %}
-        <td></td>
-        <td></td>
-        {% endif %}
-
+        <td>{{ url.id }}</td>
+        <td><a href="{{ url_for('show_url', id=url.id) }}">{{ url.name }}</a></td>
+        <td>{{ url.last_check if url.last_check is not none }}</td>
+        <td>{{ url.status_code if url.status_code is not none }}</td>
       </tr>
       {% endfor %}
+      {% endif %}
     </tbody>
   </table>
 </div>
