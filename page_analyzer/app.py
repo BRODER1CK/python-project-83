@@ -11,7 +11,6 @@ from flask import (
 import os
 import requests
 from dotenv import load_dotenv
-from itertools import zip_longest
 from page_analyzer.seo import get_seo
 from page_analyzer.url import validate, normalize
 import page_analyzer.db as db

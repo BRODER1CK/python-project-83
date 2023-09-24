@@ -16,8 +16,7 @@ def get_db():
 def get_urls_with_checks():
     with get_db() as conn:
         with conn.cursor(cursor_factory=NamedTupleCursor) as curs:
-            curs.execute(
-        'SELECT DISTINCT ON (urls.id)\
+            curs.execute('SELECT DISTINCT ON (urls.id)\
                         urls.id AS id,\
                         urls.name AS name,\
                         url_checks.created_at AS last_check,\
@@ -27,8 +26,7 @@ def get_urls_with_checks():
                     AND url_checks.id = (SELECT MAX(id)\
                                         FROM url_checks\
                                         WHERE url_id = urls.id)\
-                    ORDER BY urls.id DESC;'
-    )
+                    ORDER BY urls.id DESC;')
             urls = curs.fetchall()
     return urls
 
